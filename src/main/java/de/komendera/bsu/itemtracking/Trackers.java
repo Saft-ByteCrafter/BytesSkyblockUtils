@@ -45,7 +45,7 @@ public class Trackers {
         String chatMessage = StringUtils.stripControlCodes(event.message.getUnformattedText());
         //       System.out.println(chatMessage);
         if(chatMessage.contains(":")){
-            return;
+            //-> don't do anything
  /*           SBUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
             differentItems = SBUMain.compareInventories.getDifferentItems();
             for(DifferentItems items: differentItems){
@@ -73,6 +73,30 @@ public class Trackers {
                 }
                 else if(item.getItemName().contains("Ancient Claw") && item.getItemAmount() > 0){
                     claws += item.getItemAmount();
+                }
+                else if(item.getItemName().contains("Antique Remedies")){
+                    remedis++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Antique Remedies", remedis);
+                }
+                else if(item.getItemName().contains("Crochet Tiger Plushie")){
+                    crochets++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Crochet Tiger Plushies", crochets);
+                }
+                else if(item.getItemName().contains("Dwarf Turtle Shelmet")){
+                    shelms++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Dwarf Turtle Shelmets", shelms);
+                }
+                else if(item.getItemName().contains("Daedalus Stick")){
+                    sticks++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Daedalus Sticks", sticks);
+                }
+                else if(item.getItemName().contains("Minos Relic")){
+                    relics++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Minos Relics", relics);
+                }
+                else if(item.getItemName().contains("Enchanted Book")){
+                    chimeras++;
+                    ConfigHandler.writeIntConfig("mythological trackers", "Chimeras", chimeras);
                 }
             } //^the picke up items are added to the variables
             ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Gold", gold);
@@ -112,24 +136,6 @@ public class Trackers {
         } else if(chatMessage.contains("Griffin Feather")){
             feathers++;
             ConfigHandler.writeIntConfig("mythological trackers", "Griffin Feathers", feathers);
-        } else if(chatMessage.contains("Antique Remedies")){
-            remedis++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Antique Remedies", remedis);
-        } else if(chatMessage.contains("Crochet Tiger Plushie")){
-            crochets++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Crochet Tiger Plushies", crochets);
-        } else if(chatMessage.contains("Dwarf Turtle Shelmet")){
-            shelms++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Dwarf Turtle Shelmets", shelms);
-        } else if(chatMessage.contains("Daedalus Stick")){
-            sticks++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Daedalus Sticks", sticks);
-        } else if(chatMessage.contains("Minos Relic")){
-            relics++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minos Relics", relics);
-        } else if(chatMessage.contains("Chimera I")){
-            chimeras++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Chimeras", chimeras);
         }
     }
 
@@ -140,7 +146,7 @@ public class Trackers {
     }
 
     public static void setStartBurrows(int startBurrows) {
-        startBurrows = startBurrows;
+        Trackers.startBurrows = startBurrows;
     }
 
     public static int getMidBurrows() {
