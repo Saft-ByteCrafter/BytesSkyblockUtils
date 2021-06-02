@@ -24,7 +24,7 @@ plugins {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "0.1"
+version = "0.1.1"
 group= "de.komendera.bsu" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "BytesSkyblockUtils"
 String modid = "bsu"
