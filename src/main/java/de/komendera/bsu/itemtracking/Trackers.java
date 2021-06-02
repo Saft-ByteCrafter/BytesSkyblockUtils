@@ -3,7 +3,6 @@ package de.komendera.bsu.itemtracking;
 import de.komendera.bsu.ConfigHandler;
 import de.komendera.bsu.BSUMain;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -17,11 +16,17 @@ public class Trackers {
     private static int midBurrows;
     private static int endBurrows;
     private static int hunters;
+    private static int deathsHunters;
     private static int lynxes;
+    private static int deathsLynxes;
     private static int minotaurs;
+    private static int deathsMinotaurs;
     private static int gaias;
+    private static int deathsGaias;
     private static int champs;
+    private static int deathsChamps;
     private static int inquis;
+    private static int deathsInquis;
     private static int coins;
     private static int feathers;
     private static int remedis;
@@ -126,29 +131,35 @@ public class Trackers {
         } else if(chatMessage.contains("Griffin Feather")){
             feathers++;
             ConfigHandler.writeIntConfig("mythological trackers", "Griffin Feathers", feathers);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Hunter")){
+            deathsHunters++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Hunters", deathsHunters);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Siamese")){
+            deathsLynxes++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Siames Lynxes", deathsLynxes);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minotaur")){
+            deathsMinotaurs++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minotaurs", deathsMinotaurs);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Gaia Construct")){
+            deathsGaias++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Gaia Constructs", deathsGaias);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){
+            deathsChamps++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Champions", deathsChamps);
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Inquisitor")){
+            deathsInquis++;
+            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Inquisitors", deathsInquis);
         }
     }
 
 
 
-    public int getStartBurrows() {
-        return startBurrows;
-    }
-
     public static void setStartBurrows(int startBurrows) {
         Trackers.startBurrows = startBurrows;
     }
 
-    public static int getMidBurrows() {
-        return midBurrows;
-    }
-
     public static void setMidBurrows(int midBurrows) {
         Trackers.midBurrows = midBurrows;
-    }
-
-    public static int getEndBurrows() {
-        return endBurrows;
     }
 
     public static void setEndBurrows(int endBurrows) {
@@ -179,100 +190,76 @@ public class Trackers {
         Trackers.inquis = inquis;
     }
 
-    public static int getCoins() {
-        return coins;
-    }
-
     public static void setCoins(int coins) {
         Trackers.coins = coins;
-    }
-
-    public static int getFeathers() {
-        return feathers;
     }
 
     public static void setFeathers(int feathers) {
         Trackers.feathers = feathers;
     }
 
-    public static int getRemedis() {
-        return remedis;
-    }
-
     public static void setRemedis(int remedis) {
         Trackers.remedis = remedis;
-    }
-
-    public static int getCrochets() {
-        return crochets;
     }
 
     public static void setCrochets(int crochets) {
         Trackers.crochets = crochets;
     }
 
-    public static int getShelms() {
-        return shelms;
-    }
-
     public static void setShelms(int shelms) {
         Trackers.shelms = shelms;
-    }
-
-    public static int getSticks() {
-        return sticks;
     }
 
     public static void setSticks(int sticks) {
         Trackers.sticks = sticks;
     }
 
-    public static int getRelics() {
-        return relics;
-    }
-
     public static void setRelics(int relics) {
         Trackers.relics = relics;
-    }
-
-    public static int getChimeras() {
-        return chimeras;
     }
 
     public static void setChimeras(int chimeras) {
         Trackers.chimeras = chimeras;
     }
 
-    public static int getGold() {
-        return gold;
-    }
-
     public static void setGold(int gold) {
         Trackers.gold = gold;
-    }
-
-    public static int getIron() {
-        return iron;
     }
 
     public static void setIron(int iron) {
         Trackers.iron = iron;
     }
 
-    public static int getEnchClaws() {
-        return enchClaws;
-    }
-
     public static void setEnchClaws(int enchClaws) {
         Trackers.enchClaws = enchClaws;
     }
 
-    public static int getClaws() {
-        return claws;
-    }
-
     public static void setClaws(int claws) {
         Trackers.claws = claws;
+    }
+
+    public static void setDeathsHunters(int deathsHunters) {
+        Trackers.deathsHunters = deathsHunters;
+    }
+
+    public static void setDeathsLynxes(int deathsLynxes) {
+        Trackers.deathsLynxes = deathsLynxes;
+    }
+
+    public static void setDeathsMinotaurs(int deathsMinotaurs) {
+        Trackers.deathsMinotaurs = deathsMinotaurs;
+    }
+
+    public static void setDeathsGaias(int deathsGaias) {
+        Trackers.deathsGaias = deathsGaias;
+    }
+
+    public static void setDeathsChamps(int deathsChamps) {
+        Trackers.deathsChamps = deathsChamps;
+    }
+
+    public static void setDeathsInquis(int deathsInquis) {
+        Trackers.deathsInquis = deathsInquis;
     }
 
 }

@@ -76,15 +76,25 @@ public class ConfigHandler {
     }
 
     public static void reloadConfig(){
+        //for burrows:
         Trackers.setStartBurrows(initInt("mythological trackers", "Start Burrows", 0));
         Trackers.setMidBurrows(initInt("mythological trackers", "Mid Burrows", 0));
         Trackers.setEndBurrows(initInt("mythological trackers", "End Burrows", 0));
+        //for creatures:
         Trackers.setHunters(initInt("mythological trackers", "Minos Hunters", 0));
         Trackers.setLynxes(initInt("mythological trackers", "Siamese Lynxes", 0));
         Trackers.setMinotaurs(initInt("mythological trackers", "Minotaurs", 0));
         Trackers.setGaias(initInt("mythological trackers", "Gaia Constructs", 0));
         Trackers.setChamps(initInt("mythological trackers", "Minos Champions", 0));
         Trackers.setInquis(initInt("mythological trackers", "Minos Inquisitors", 0));
+        //for deaths to creatures:
+        Trackers.setDeathsHunters(initInt("mythological trackers", "Deaths Minos Hunters", 0));
+        Trackers.setDeathsLynxes(initInt("mythological trackers", "Deaths Siames Lynxes", 0));
+        Trackers.setDeathsMinotaurs(initInt("mythological trackers", "Deaths Minotaurs", 0));
+        Trackers.setDeathsGaias(initInt("mythological trackers", "Deaths Gaia Constructs", 0));
+        Trackers.setDeathsChamps(initInt("mythological trackers", "Deaths Minos Champions", 0));
+        Trackers.setDeathsInquis(initInt("mythological trackers", "Deaths Minos Inquisitors", 0));
+        //for rare drops:
         Trackers.setCoins(initInt("mythological trackers", "Coins", 0));
         Trackers.setFeathers(initInt("mythological trackers", "Griffin Feathers", 0));
         Trackers.setRemedis(initInt("mythological trackers", "Antique Remedies", 0));
@@ -93,6 +103,7 @@ public class ConfigHandler {
         Trackers.setSticks(initInt("mythological trackers", "Daedalus Sticks", 0));
         Trackers.setRelics(initInt("mythological trackers", "Minos Relics", 0));
         Trackers.setChimeras(initInt("mythological trackers", "Chimeras", 0));
+        //for other drops:
         Trackers.setGold(initInt("mythological trackers", "Enchanted Gold", 0));
         Trackers.setIron(initInt("mythological trackers", "Enchanted Iron", 0));
         Trackers.setEnchClaws(initInt("mythological trackers", "Enchanted Ancient Claw", 0));
