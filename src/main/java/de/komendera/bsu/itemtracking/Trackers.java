@@ -38,24 +38,16 @@ public class Trackers {
 
 //    private SBUMain main = SBUMain.getInstance();
 
-    //§6§lRARE DROP! §5Antique Remedies
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChat(ClientChatReceivedEvent event){
 
         String chatMessage = StringUtils.stripControlCodes(event.message.getUnformattedText());
-        //       System.out.println(chatMessage);
         if(chatMessage.contains(":")){
             //-> don't do anything
- /*           SBUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
-            differentItems = SBUMain.compareInventories.getDifferentItems();
-            for(DifferentItems items: differentItems){
-                if(!(items == null)) System.out.println(items.getItemName() + " + " + items.getItemAmount());
-            } //testcode to test if it works
- */      } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
+        } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
             startBurrows++;
             BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird TODO so machen, dass es nich am anfang jeder chain gemacht wird
             ConfigHandler.writeIntConfig("mythological trackers", "Start Burrows", startBurrows);
- //           Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("first burrow")); //test output TODO remove maybe
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (2/4)") || chatMessage.startsWith("You dug out a Griffin Burrow! (3/4)")){
             midBurrows++;
             ConfigHandler.writeIntConfig("mythological trackers", "Mid Burrows", midBurrows);
@@ -103,11 +95,9 @@ public class Trackers {
             ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Iron", iron);
             ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Ancient Claw", enchClaws);
             ConfigHandler.writeIntConfig("mythological trackers", "Ancient Claw", claws); //the variables are passed to the cfg
- //            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("1:" + claws)); //test output TODO remove maybe
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (4/4)")){
             endBurrows++;
             ConfigHandler.writeIntConfig("mythological trackers", "End Burrows" , endBurrows);
- //           Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("fourth burrow")); //test output TODO remove maybe
         } else if(chatMessage.contains("Minos Hunter")){
             hunters++;
             ConfigHandler.writeIntConfig("mythological trackers", "Minos Hunters", hunters);

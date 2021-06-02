@@ -5,7 +5,6 @@ import de.komendera.bsu.itemtracking.Trackers;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
-import java.util.List;
 
 public class ConfigHandler {
 

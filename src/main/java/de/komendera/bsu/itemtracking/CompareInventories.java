@@ -7,16 +7,14 @@ import java.util.*;
 public class CompareInventories {
 
     private List<ItemStack> oldInventory;
-    List<DifferentItems> differentItems = new ArrayList<DifferentItems>();
-//    private List<ItemStack> differentItems;
+    List<DifferentItems> differentItems = new ArrayList<>();
 
     public CompareInventories(){
-//        differentItems = new ArrayList<ItemStack>();
         resetOldInventory(); //resets the old inv at the beginning of minecraft
     }
 
     private List<ItemStack> getNewInventory(ItemStack[] inventory){
-        List<ItemStack> nextInventory = new ArrayList<ItemStack>(inventory.length); //the items of the player-inv get saved into nextinventory
+        List<ItemStack> nextInventory = new ArrayList<>(inventory.length); //the items of the player-inv get saved into nextinventory
         for(ItemStack stack: inventory){
             if(stack != null){
                 nextInventory.add(ItemStack.copyItemStack(stack));
@@ -30,8 +28,8 @@ public class CompareInventories {
 
     public void getNewItems(ItemStack[] inventory){
         List<ItemStack> currentInventory = getNewInventory(inventory); //the new inv of the player is acquired
-        final Map<String, Integer> oldInventoryMap = new HashMap<String, Integer>();
-        Map<String, Integer> currentInventoryMap = new HashMap<String, Integer>();
+        final HashMap<String, Integer> oldInventoryMap = new HashMap<>();
+        HashMap<String, Integer> currentInventoryMap = new HashMap<>();
         if(oldInventory != null){
             differentItems.clear();
             for(int i = 0; i < currentInventory.size()-1; i++){ //goes through the list of items in the inv
@@ -40,38 +38,26 @@ public class CompareInventories {
                 ItemStack currentStack = currentInventory.get(i);
                 if(oldStack == null && currentStack == null) continue;
                 if(oldStack != null && currentStack == null) {
-                    addInMap((HashMap<String, Integer>) oldInventoryMap, oldStack.getDisplayName(), oldStack.stackSize);
+                    addInMap(oldInventoryMap, oldStack.getDisplayName(), oldStack.stackSize);
                 }
                 else if(oldStack == null && currentStack != null){
-                    addInMap((HashMap<String, Integer>) currentInventoryMap, currentStack.getDisplayName(), currentStack.stackSize);
-        /*            differentItems.add(currentStack);
-                    continue;
-        */        }
+                    addInMap(currentInventoryMap, currentStack.getDisplayName(), currentStack.stackSize);
+                }
                 else if(!oldStack.getIsItemStackEqual(currentStack)) { //if it's not the same item:
-                    addInMap((HashMap<String, Integer>) oldInventoryMap, oldStack.getDisplayName(), oldStack.stackSize);
-                    addInMap((HashMap<String, Integer>) currentInventoryMap, currentStack.getDisplayName(), currentStack.stackSize);
-        /*            if(!(oldStack.getTagCompound().equals(currentStack.getTagCompound()))){
-
-                        differentItems.add(currentStack);
-                    }
-                    else{ //if it is the same item but the amount has changed:
-                        differentItems.add(currentStack.splitStack(oldStack.stackSize));
-                    }
-         */       }
-                //                  oldInventory.set(i, currentStack);
+                    addInMap(oldInventoryMap, oldStack.getDisplayName(), oldStack.stackSize);
+                    addInMap(currentInventoryMap, currentStack.getDisplayName(), currentStack.stackSize);
+                }
             }
 
-            Set<String> keys = new HashSet<String>(oldInventoryMap.keySet());
+            Set<String> keys = new HashSet<>(oldInventoryMap.keySet());
             keys.addAll(currentInventoryMap.keySet());
 
-            //           keys.forEach(key-> {
             for(String key: keys){
                 int oldAmount = oldInventoryMap.getOrDefault(key, 0);
                 int currentAmount = currentInventoryMap.getOrDefault(key, 0);
                 int difference = currentAmount-oldAmount;
                 if(difference != 0) differentItems.add(new DifferentItems(key, difference));
             }
-            //           });
         }
         oldInventory = currentInventory;
     }
