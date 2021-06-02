@@ -29,6 +29,8 @@ public class Trackers {
     private static int deathsInquis;
     private static int coins;
     private static int feathers;
+    private static int cogs;
+    private static int washedUps;
     private static int remedis;
     private static int crochets;
     private static int shelms;
@@ -39,6 +41,7 @@ public class Trackers {
     private static int iron;
     private static int enchClaws;
     private static int claws;
+    private static final String mytho = "mythological trackers";
     private List<DifferentItems> differentItems;
 
 //    private SBUMain main = SBUMain.getInstance();
@@ -52,10 +55,10 @@ public class Trackers {
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
             startBurrows++;
             BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird TODO so machen, dass es nich am anfang jeder chain gemacht wird
-            ConfigHandler.writeIntConfig("mythological trackers", "Start Burrows", startBurrows);
+            ConfigHandler.writeIntConfig(mytho, "Start Burrows", startBurrows);
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (2/4)") || chatMessage.startsWith("You dug out a Griffin Burrow! (3/4)")){
             midBurrows++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Mid Burrows", midBurrows);
+            ConfigHandler.writeIntConfig(mytho, "Mid Burrows", midBurrows);
             BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
             differentItems = BSUMain.compareInventories.getDifferentItems();
             for(DifferentItems item: differentItems){
@@ -73,82 +76,88 @@ public class Trackers {
                 }
                 else if(item.getItemName().contains("Antique Remedies")){
                     remedis++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Antique Remedies", remedis);
+                    ConfigHandler.writeIntConfig(mytho, "Antique Remedies", remedis);
                 }
                 else if(item.getItemName().contains("Crochet Tiger Plushie")){
                     crochets++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Crochet Tiger Plushies", crochets);
+                    ConfigHandler.writeIntConfig(mytho, "Crochet Tiger Plushies", crochets);
                 }
                 else if(item.getItemName().contains("Dwarf Turtle Shelmet")){
                     shelms++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Dwarf Turtle Shelmets", shelms);
+                    ConfigHandler.writeIntConfig(mytho, "Dwarf Turtle Shelmets", shelms);
                 }
                 else if(item.getItemName().contains("Daedalus Stick")){
                     sticks++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Daedalus Sticks", sticks);
+                    ConfigHandler.writeIntConfig(mytho, "Daedalus Sticks", sticks);
                 }
                 else if(item.getItemName().contains("Minos Relic")){
                     relics++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Minos Relics", relics);
+                    ConfigHandler.writeIntConfig(mytho, "Minos Relics", relics);
                 }
                 else if(item.getItemName().contains("Enchanted Book")){
                     chimeras++;
-                    ConfigHandler.writeIntConfig("mythological trackers", "Chimeras", chimeras);
+                    ConfigHandler.writeIntConfig(mytho, "Chimeras", chimeras);
                 }
             } //^the picke up items are added to the variables
-            ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Gold", gold);
-            ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Iron", iron);
-            ConfigHandler.writeIntConfig("mythological trackers", "Enchanted Ancient Claw", enchClaws);
-            ConfigHandler.writeIntConfig("mythological trackers", "Ancient Claw", claws); //the variables are passed to the cfg
+            ConfigHandler.writeIntConfig(mytho, "Enchanted Gold", gold);
+            ConfigHandler.writeIntConfig(mytho, "Enchanted Iron", iron);
+            ConfigHandler.writeIntConfig(mytho, "Enchanted Ancient Claw", enchClaws);
+            ConfigHandler.writeIntConfig(mytho, "Ancient Claw", claws); //the variables are passed to the cfg
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (4/4)")){
             endBurrows++;
-            ConfigHandler.writeIntConfig("mythological trackers", "End Burrows" , endBurrows);
+            ConfigHandler.writeIntConfig(mytho, "End Burrows" , endBurrows);
         } else if(chatMessage.contains("Minos Hunter")){
             hunters++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minos Hunters", hunters);
+            ConfigHandler.writeIntConfig(mytho, "Minos Hunters", hunters);
         } else if(chatMessage.contains("Siamese Lynxes")){
             lynxes++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Siamese Lynxes", lynxes);
+            ConfigHandler.writeIntConfig(mytho, "Siamese Lynxes", lynxes);
         } else if(chatMessage.contains("Minotaur")){
             minotaurs++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minotaurs", minotaurs);
+            ConfigHandler.writeIntConfig(mytho, "Minotaurs", minotaurs);
         } else if(chatMessage.contains("Gaia Construct")){
             gaias++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Gaia Constructs", gaias);
+            ConfigHandler.writeIntConfig(mytho, "Gaia Constructs", gaias);
         } else if(chatMessage.contains("Minos Champion")){
             champs++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minos Champions", champs);
+            ConfigHandler.writeIntConfig(mytho, "Minos Champions", champs);
         } else if(chatMessage.contains("Actually, you dug up a ")){//TODO this kinda does not work
             inquis++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minos Inquisitors", inquis);
+            ConfigHandler.writeIntConfig(mytho, "Minos Inquisitors", inquis);
             champs--;
-            ConfigHandler.writeIntConfig("mythological trackers", "Minos Champions", champs);
+            ConfigHandler.writeIntConfig(mytho, "Minos Champions", champs);
         } else if(chatMessage.contains("You dug out ") && chatMessage.contains("coins!")){
             String[] cutChatMessage = chatMessage.split(" ");
             int amount = Integer.valueOf(cutChatMessage[4].replace(",", ""));
             coins += amount;
-            ConfigHandler.writeIntConfig("mythological trackers", "Coins", coins);
+            ConfigHandler.writeIntConfig(mytho, "Coins", coins);
         } else if(chatMessage.contains("Griffin Feather")){
             feathers++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Griffin Feathers", feathers);
+            ConfigHandler.writeIntConfig(mytho, "Griffin Feathers", feathers);
+        } else if(chatMessage.contains("Crown of Greed")){
+            cogs++;
+            ConfigHandler.writeIntConfig(mytho, "Crowns of Greed", cogs);
+        } else if(chatMessage.contains("Washed up")){
+            washedUps++;
+            ConfigHandler.writeIntConfig(mytho, "Washed up Souvenirs", washedUps);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Hunter")){
             deathsHunters++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Hunters", deathsHunters);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Minos Hunters", deathsHunters);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Siamese")){
             deathsLynxes++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Siames Lynxes", deathsLynxes);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Siames Lynxes", deathsLynxes);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minotaur")){
             deathsMinotaurs++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minotaurs", deathsMinotaurs);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Minotaurs", deathsMinotaurs);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Gaia Construct")){
             deathsGaias++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Gaia Constructs", deathsGaias);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Gaia Constructs", deathsGaias);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){
             deathsChamps++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Champions", deathsChamps);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Minos Champions", deathsChamps);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Inquisitor")){
             deathsInquis++;
-            ConfigHandler.writeIntConfig("mythological trackers", "Deaths Minos Inquisitors", deathsInquis);
+            ConfigHandler.writeIntConfig(mytho, "Deaths Minos Inquisitors", deathsInquis);
         }
     }
 
@@ -196,6 +205,14 @@ public class Trackers {
 
     public static void setFeathers(int feathers) {
         Trackers.feathers = feathers;
+    }
+
+    public static void setCogs(int cogs){
+        Trackers.cogs = cogs;
+    }
+
+    public static void setWashedUps(int washedUps){
+        Trackers.washedUps = washedUps;
     }
 
     public static void setRemedis(int remedis) {
