@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bsu",
+  "name": "BytesSkyblockMod",
+  "description": "Some maybe useful hypixel skyblock QoL features.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ByteCrafter"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
