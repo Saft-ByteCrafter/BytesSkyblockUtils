@@ -9,7 +9,7 @@ import java.io.File;
 public class ConfigHandler {
 
     private static Configuration config;
-    private static final String configFile = "config/SkyBlockUtilities.cfg";
+    private static final String configFile = "config/BytesSkyblockUtils/trackers.cfg";
 
     /*   public static void init(){
            config = new Configuration(new File(configFile));
