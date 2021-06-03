@@ -98,7 +98,7 @@ public class Trackers {
                     chimeras++;
                     ConfigHandler.writeIntConfig(mytho, "Chimeras", chimeras);
                 }
-            } //^the picke up items are added to the variables
+            } //^the picked up items are added to the variables
             ConfigHandler.writeIntConfig(mytho, "Enchanted Gold", gold);
             ConfigHandler.writeIntConfig(mytho, "Enchanted Iron", iron);
             ConfigHandler.writeIntConfig(mytho, "Enchanted Ancient Claw", enchClaws);
@@ -106,21 +106,24 @@ public class Trackers {
         } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (4/4)")){
             endBurrows++;
             ConfigHandler.writeIntConfig(mytho, "End Burrows" , endBurrows);
-        } else if(chatMessage.contains("Minos Hunter")){
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Hunter")){
             hunters++;
             ConfigHandler.writeIntConfig(mytho, "Minos Hunters", hunters);
-        } else if(chatMessage.contains("Siamese Lynxes")){
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Siamese Lynxes")){
             lynxes++;
             ConfigHandler.writeIntConfig(mytho, "Siamese Lynxes", lynxes);
-        } else if(chatMessage.contains("Minotaur")){
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minotaur")){
             minotaurs++;
             ConfigHandler.writeIntConfig(mytho, "Minotaurs", minotaurs);
-        } else if(chatMessage.contains("Gaia Construct")){
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Gaia Construct")){
             gaias++;
             ConfigHandler.writeIntConfig(mytho, "Gaia Constructs", gaias);
-        } else if(chatMessage.contains("Minos Champion")){
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Champion")){
             champs++;
             ConfigHandler.writeIntConfig(mytho, "Minos Champions", champs);
+        } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Inquisitor")){
+            inquis++; //doesn't happen rn cause hypixel bad and they send the same msg for inquis as for champs, thats why the code under this exists
+            ConfigHandler.writeIntConfig(mytho, "Minos Inquisitors", inquis);
         } else if(chatMessage.contains("Actually, you dug up a ")){//TODO this kinda does not work
             inquis++;
             ConfigHandler.writeIntConfig(mytho, "Minos Inquisitors", inquis);
@@ -152,7 +155,7 @@ public class Trackers {
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Gaia Construct")){
             deathsGaias++;
             ConfigHandler.writeIntConfig(mytho, "Deaths Gaia Constructs", deathsGaias);
-        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){//TODO doesn't work, inquis do work tho
             deathsChamps++;
             ConfigHandler.writeIntConfig(mytho, "Deaths Minos Champions", deathsChamps);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Inquisitor")){
