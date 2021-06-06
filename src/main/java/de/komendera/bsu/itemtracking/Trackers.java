@@ -103,7 +103,7 @@ public class Trackers {
             ConfigHandler.writeIntConfig(mytho, "Enchanted Iron", iron);
             ConfigHandler.writeIntConfig(mytho, "Enchanted Ancient Claw", enchClaws);
             ConfigHandler.writeIntConfig(mytho, "Ancient Claw", claws); //the variables are passed to the cfg
-        } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (4/4)")){
+        } else if(chatMessage.startsWith("You finished the Griffin Burrow chain! (4/4)")){
             endBurrows++;
             ConfigHandler.writeIntConfig(mytho, "End Burrows" , endBurrows);
         } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Hunter")){
