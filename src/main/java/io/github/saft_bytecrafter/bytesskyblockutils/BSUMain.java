@@ -1,5 +1,6 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
+import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.CompareInventories;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraftforge.common.MinecraftForge;
