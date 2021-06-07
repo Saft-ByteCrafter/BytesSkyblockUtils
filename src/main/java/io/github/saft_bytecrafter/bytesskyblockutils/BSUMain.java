@@ -1,7 +1,7 @@
-package de.komendera.bsu;
+package io.github.saft_bytecrafter.bytesskyblockutils;
 
-import de.komendera.bsu.itemtracking.CompareInventories;
-import de.komendera.bsu.itemtracking.Trackers;
+import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.CompareInventories;
+import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

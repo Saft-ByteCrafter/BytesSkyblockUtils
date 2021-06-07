@@ -1,7 +1,7 @@
-package de.komendera.bsu;
+package io.github.saft_bytecrafter.bytesskyblockutils;
 
 
-import de.komendera.bsu.itemtracking.Trackers;
+import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;

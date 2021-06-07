@@ -1,7 +1,7 @@
-package de.komendera.bsu.itemtracking;
+package io.github.saft_bytecrafter.bytesskyblockutils.itemtracking;
 
-import de.komendera.bsu.ConfigHandler;
-import de.komendera.bsu.BSUMain;
+import io.github.saft_bytecrafter.bytesskyblockutils.ConfigHandler;
+import io.github.saft_bytecrafter.bytesskyblockutils.BSUMain;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;

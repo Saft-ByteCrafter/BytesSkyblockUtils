@@ -1,4 +1,4 @@
-package de.komendera.bsu.itemtracking;
+package io.github.saft_bytecrafter.bytesskyblockutils.itemtracking;
 
 public class DifferentItems {
 

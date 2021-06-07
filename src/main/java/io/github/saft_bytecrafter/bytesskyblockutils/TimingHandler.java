@@ -1,4 +1,4 @@
-package de.komendera.bsu;
+package io.github.saft_bytecrafter.bytesskyblockutils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
