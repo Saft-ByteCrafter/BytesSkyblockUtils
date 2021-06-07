@@ -50,9 +50,8 @@ public class Trackers {
     public void onChat(ClientChatReceivedEvent event){
 
         String chatMessage = StringUtils.stripControlCodes(event.message.getUnformattedText());
-        if(chatMessage.contains(":")){
-            //-> don't do anything
-        } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
+        if(chatMessage.contains(":")) return;
+        if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
             startBurrows++;
             BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird TODO so machen, dass es nich am anfang jeder chain gemacht wird
             ConfigHandler.writeIntConfig(mytho, "Start Burrows", startBurrows);
@@ -155,7 +154,7 @@ public class Trackers {
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Gaia Construct")){
             deathsGaias++;
             ConfigHandler.writeIntConfig(mytho, "Deaths Gaia Constructs", deathsGaias);
-        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){//TODO doesn't work, inquis do work tho
+        } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){
             deathsChamps++;
             ConfigHandler.writeIntConfig(mytho, "Deaths Minos Champions", deathsChamps);
         } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Inquisitor")){

@@ -9,7 +9,7 @@ import java.io.File;
 public class ConfigHandler {
 
     private static Configuration config;
-    private static final String configFile = "config/BytesSkyblockUtils/trackers.cfg";
+    private static final String lootTrackingFile = "config/BytesSkyblockUtils/trackers.cfg";
     private static final String mytho = "mythological trackers";
 
     /*   public static void init(){
@@ -26,7 +26,7 @@ public class ConfigHandler {
        } //Base for this stuff
    */
     public static int getInt(String category, String key) {
-        config = new Configuration(new File(configFile));
+        config = new Configuration(new File(lootTrackingFile));
         try {
             config.load();
             if (config.getCategory(category).containsKey(key)) {
@@ -41,7 +41,7 @@ public class ConfigHandler {
     }
 
     public static void writeIntConfig(String category, String key, int value) {
-        config = new Configuration(new File(configFile));
+        config = new Configuration(new File(lootTrackingFile));
         try {
             config.load();
             int set = config.get(category, key, value).getInt();
@@ -54,7 +54,7 @@ public class ConfigHandler {
     }
 
     public static boolean hasKey(String category, String key) {
-        config = new Configuration(new File(configFile));
+        config = new Configuration(new File(lootTrackingFile));
         try {
             config.load();
             if (!config.hasCategory(category)) return false;
