@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 import sun.java2d.pipe.TextRenderer;
 
@@ -66,6 +67,8 @@ public class ConfigGUI extends GuiScreen {
         y -= mc.fontRendererObj.FONT_HEIGHT;
         y += mc.fontRendererObj.FONT_HEIGHT*scale;
         mc.fontRendererObj.drawString(title, x, y, 0xFFFFFF, true);//TODO replace this with TextRenderingHanlder
+        GL11.glScaled(Math.pow(scale, -1), Math.pow(scale, -1), Math.pow(scale, -1)); //idk what this does :(
+        GlStateManager.color(1, 1, 1, 1); //idk what this does :(
     }
 
     @Override
