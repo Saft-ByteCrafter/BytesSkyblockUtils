@@ -6,6 +6,10 @@ import io.github.saft_bytecrafter.bytesskyblockutils.TimingHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import scala.actors.threadpool.Arrays;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigGuiCommand extends CommandBase {
 
@@ -21,7 +25,7 @@ public class ConfigGuiCommand extends CommandBase {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return null;
+        return "/" + getCommandName();
     }
 
     @Override
