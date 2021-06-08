@@ -26,6 +26,57 @@ public class ConfigHandler {
            }
        } //Base for this stuff
    */
+    public static boolean hasKey(String file, String category, String key) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            if (!config.hasCategory(category)) return false;
+            return config.getCategory(category).containsKey(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            config.save();
+        }
+        return false;
+    }
+
+    public static boolean getBoolean(String file, String category, String key) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            if (config.getCategory(category).containsKey(key)) {
+                return config.get(category, key, 0).getBoolean();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            config.save();
+        }
+        return true;
+    }
+
+    public static void writeBoolConfig(String file, String category, String key, boolean value) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            boolean set = config.get(category, key, value).getBoolean();
+            config.getCategory(category).get(key).set(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            config.save();
+        }
+    }
+
+    public static boolean initBool(String file, String category, String key, boolean defaultValue) {
+        if (!hasKey(file, category, key)) {
+            writeBoolConfig(file, category, key, defaultValue);
+            return defaultValue;
+        } else {
+            return getBoolean(file, category, key);
+        }
+    }
+
     public static int getInt(String file, String category, String key) {
         config = new Configuration(new File(file));
         try {
@@ -54,20 +105,6 @@ public class ConfigHandler {
         }
     }
 
-    public static boolean hasKey(String file, String category, String key) {
-        config = new Configuration(new File(file));
-        try {
-            config.load();
-            if (!config.hasCategory(category)) return false;
-            return config.getCategory(category).containsKey(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            config.save();
-        }
-        return false;
-    }
-
     public static int initInt(String file, String category, String key, int defaultValue) {
         if (!hasKey(file, category, key)) {
             writeIntConfig(file, category, key, defaultValue);
@@ -81,7 +118,7 @@ public class ConfigHandler {
         //config:
 
         //trackerconfig:
-
+        OnOffConfigs.setMythoTracker(initBool(modConfigFile, "trackers", "Mythological-Tracker", true));
 
 
         //trackers:
@@ -124,6 +161,10 @@ public class ConfigHandler {
 
     public static String getLootTrackingFile(){
         return lootTrackingFile;
+    }
+
+    public static String getModConfigFile(){
+        return modConfigFile;
     }
 
 }

@@ -1,16 +1,29 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
+import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigGUI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import java.util.List;
-
 public class TimingHandler {
 
+    private static String guiToOpen;
+
+    @SubscribeEvent
+    public void onRenderTick(TickEvent.RenderTickEvent event){
+
+        if(guiToOpen != null){
+            Minecraft mc = Minecraft.getMinecraft();
+            if(guiToOpen.startsWith("configgui")){
+                mc.displayGuiScreen(new ConfigGUI());
+            }
+        }
+        guiToOpen = null;
+    }
+
+    public static void setGuiToOpen(String guiToOpen) {
+        TimingHandler.guiToOpen = guiToOpen;
+    }
 /*    private int tickCounter;
     private List<ItemStack> differentItems;
 
