@@ -54,7 +54,7 @@ public class Trackers {
         if(OnOffConfigs.getMythoTracker()){
             if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
                 startBurrows++;
-                BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird TODO so machen, dass es nich am anfang jeder chain gemacht wird
+                BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird
                 ConfigHandler.writeIntConfig(file, mytho, "Start Burrows", startBurrows);
             } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (2/4)") || chatMessage.startsWith("You dug out a Griffin Burrow! (3/4)")){
                 midBurrows++;
