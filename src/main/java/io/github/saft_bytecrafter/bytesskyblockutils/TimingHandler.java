@@ -28,8 +28,9 @@ public class TimingHandler {
     }
 
     private static int tickCounter;
+    private static List<DifferentItems> differentItems;
 
-    @SubscribeEvent()
+  @SubscribeEvent()
     public void onWorldJoin(EntityJoinWorldEvent event){
       if(event.entity != Minecraft.getMinecraft().thePlayer) return;
         tickCounter = 1;
@@ -47,7 +48,7 @@ public class TimingHandler {
                     BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
                 }
             }
-            List<DifferentItems> differentItems = BSUMain.compareInventories.getDifferentItems();
+            differentItems = BSUMain.compareInventories.getDifferentItems();
             for(DifferentItems item: differentItems){
                 System.out.println(item.getItemName() + " + " + item.getItemAmount());
             }
