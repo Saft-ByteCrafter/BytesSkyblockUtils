@@ -1,5 +1,6 @@
 package io.github.saft_bytecrafter.bytesskyblockutils.configstuff;
 
+import io.github.saft_bytecrafter.bytesskyblockutils.TextRenderingHandler;
 import io.github.saft_bytecrafter.bytesskyblockutils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -38,14 +39,14 @@ public class ConfigGUI extends GuiScreen {
         ScaledResolution scaledRes = new ScaledResolution(Minecraft.getMinecraft());
         int height = scaledRes.getScaledHeight();
         int width = scaledRes.getScaledWidth();
-        int normalButtonWidth = 200;
+        int normalButtonWidth = 200;//TODO maybe scale with screenres as well
         int buttonHeight = 20;
 
 //        next = new GuiButton(0, width/2 - 100, (int) (height * 0.8), (normalButtonWidth-40)/2, buttonHeight, "Next ->");
 //        back = new GuiButton(0, width/2 +20, (int) (height*0.8), (normalButtonWidth-40)/2, buttonHeight, "<- Back");
         gitHub = new GuiButton(0, 5, height-buttonHeight-5, (normalButtonWidth-40)/2, buttonHeight, "GitHub");
 
-        mythologicalTracker = new GuiButton(0, width/2-normalButtonWidth/2, 20, normalButtonWidth, buttonHeight, "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker()));
+        mythologicalTracker = new GuiButton(0, width/2-normalButtonWidth/2, height/2-buttonHeight/2, normalButtonWidth, buttonHeight, "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker()));
 
 //        this.buttonList.add(next);
 //        this.buttonList.add(back);
@@ -60,15 +61,9 @@ public class ConfigGUI extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         String title = "Bytecrafter's Skyblock Utilities";
         double scale = 1D;
-        int x = 100;
-        int y = 100;
         String pages = "Page " + 1 + " / " + 1; //TODO change this if there are more things
-        GL11.glScaled(scale, scale, scale);
-        y -= mc.fontRendererObj.FONT_HEIGHT;
-        y += mc.fontRendererObj.FONT_HEIGHT*scale;
-        mc.fontRendererObj.drawString(title, x, y, 0xFFFFFF, true);//TODO replace this with TextRenderingHanlder
-        GL11.glScaled(Math.pow(scale, -1), Math.pow(scale, -1), Math.pow(scale, -1)); //idk what this does :(
-        GlStateManager.color(1, 1, 1, 1); //idk what this does :(
+        TextRenderingHandler.renderText(mc, title, 0xFFFFFF, scale, width/2, height/2);
+        TextRenderingHandler.renderText(mc,  pages, 0x00FF00, scale, width/2, height/2);
     }
 
     @Override
