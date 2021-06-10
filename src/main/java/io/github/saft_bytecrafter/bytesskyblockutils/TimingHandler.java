@@ -1,13 +1,13 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
-import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigGUI;
+import io.github.saft_bytecrafter.bytesskyblockutils.Guis.ConfigGUI;
+import io.github.saft_bytecrafter.bytesskyblockutils.Guis.DropStatsGui;
+import io.github.saft_bytecrafter.bytesskyblockutils.Guis.MythoDropsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.DifferentItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.apache.commons.lang3.builder.Diff;
 
 import java.util.List;
 
@@ -22,6 +22,12 @@ public class TimingHandler {
             Minecraft mc = Minecraft.getMinecraft();
             if(guiToOpen.startsWith("configgui")){
                 mc.displayGuiScreen(new ConfigGUI());
+            }
+            else if(guiToOpen.startsWith("dropstats")){
+                mc.displayGuiScreen(new DropStatsGui());
+            }
+            else if(guiToOpen.startsWith("mythodrops")){
+                mc.displayGuiScreen(new MythoDropsGui());
             }
         }
         guiToOpen = null;

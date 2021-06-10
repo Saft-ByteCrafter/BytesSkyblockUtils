@@ -1,6 +1,8 @@
-package io.github.saft_bytecrafter.bytesskyblockutils.configstuff;
+package io.github.saft_bytecrafter.bytesskyblockutils.Guis;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.Utils;
+import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
+import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.OnOffConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -24,8 +26,6 @@ public class ConfigGUI extends GuiScreen {
 
     //trackers
     private GuiButton mythologicalTracker;
-
-    private GuiTextField textField;
 
     @Override
     public boolean doesGuiPauseGame() {
@@ -62,7 +62,7 @@ public class ConfigGUI extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         String title = "Bytecrafter's Skyblock Utilities";
 //        String pages = "Page " + 1 + "/" + 1; //TODO change this if there are more things
-        drawCenteredString(fontRendererObj, title, width / 2 /*- titleWidth/2*/, 10, 0xFFFFFF); 
+        drawCenteredString(fontRendererObj, title, width/2, 10, 0xFFFFFF);
 //        drawCenteredString(fontRendererObj,  pages, width/2, (int) (height*0.89), 0xFFFFFF);
     }
 

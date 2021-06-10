@@ -1,6 +1,7 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.commands.ConfigGuiCommand;
+import io.github.saft_bytecrafter.bytesskyblockutils.commands.DropStatsCommand;
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.CompareInventories;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
@@ -31,6 +32,7 @@ public class BSUMain{
         MinecraftForge.EVENT_BUS.register(new Trackers());
 
         ClientCommandHandler.instance.registerCommand(new ConfigGuiCommand());
+        ClientCommandHandler.instance.registerCommand(new DropStatsCommand());
 
         ConfigHandler.reloadConfig();
     }
