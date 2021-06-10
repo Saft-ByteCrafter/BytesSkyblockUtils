@@ -120,7 +120,6 @@ public class ConfigHandler {
         //trackerconfig:
         OnOffConfigs.setMythoTracker(initBool(modConfigFile, "trackers", "Mythological-Tracker", true));
 
-
         //trackers:
         //mytho:
         //for burrows:
