@@ -11,6 +11,7 @@ public class MythoDropsGui extends DropStatsGui {
     private int midBurrows;
     private int endBurrows;
     private float sumBurrows;
+
     private float hunters;
     private float lynxes;
     private float minotaurs;
@@ -18,6 +19,7 @@ public class MythoDropsGui extends DropStatsGui {
     private float champs;
     private float inquis;
     private float totalMobs;
+
     private int deathsHunter;
     private int deathsLynx;
     private int deathsMinotaurs;
@@ -25,6 +27,23 @@ public class MythoDropsGui extends DropStatsGui {
     private int deathsChamp;
     private int deathsInquis;
 
+    private int coins;
+    private int feathers;
+    private int cog;
+    private int washedUp;
+
+    private int claws;
+    private int enchClaws;
+    private int gold;
+    private int iron;
+
+    private int gremdis;
+    private int crochets;
+    private int shelms;
+    private int relics;
+    private int chimeras;
+
+//TODO other stat for coins of mobs (scavenger or smth idk)
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -47,6 +66,8 @@ public class MythoDropsGui extends DropStatsGui {
         deathsGaias = ConfigHandler.getInt(file, tabName, "Deaths Gaia Constructs");
         deathsChamp = ConfigHandler.getInt(file, tabName, "Deaths Minos Champions");
         deathsInquis = ConfigHandler.getInt(file, tabName, "Deaths Minos Inquisitors");
+        coins = ConfigHandler.getInt(file, tabName, "Coins");
+        feathers = ConfigHandler.getInt(file, tabName, "Griffin Feathers");
 
         //create the strings to render
         String startingBurrows = sumBurrows != 0 ? midBurrows != 0 ? "Starting Burrows: " + startBurrows + " " + String.valueOf((startBurrows/sumBurrows)*100).substring(0, 4) + "%" : "not start burrows yet" : "no burrows yet";
