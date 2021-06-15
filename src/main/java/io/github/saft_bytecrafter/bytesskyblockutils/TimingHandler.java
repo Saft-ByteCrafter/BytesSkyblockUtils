@@ -41,7 +41,6 @@ public class TimingHandler {
       if(event.entity != Minecraft.getMinecraft().thePlayer) return;
         tickCounter = 1;
         BSUMain.compareInventories.resetOldInventory();
-    System.out.println("you joined");
     }
 
     @SubscribeEvent()
