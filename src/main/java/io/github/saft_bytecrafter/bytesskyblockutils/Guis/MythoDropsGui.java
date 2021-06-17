@@ -125,7 +125,7 @@ public class MythoDropsGui extends DropStatsGui {
         String chimerasString = inquis != 0 ? chimeras != 0 ? "Chimeras: " + chimeras + " -> " + String.valueOf((chimeras/(inquis-deathsInquis))*100).substring(0, 4) + "%" : "no Chimeras dropped yet" : "no Inquis killed yet";
 
         String clawsString = totalMobs != 0 ? claws != 0 ? "Ancient Claws: " + claws + " -> " + (String.valueOf(claws/(totalMobs+lynxes-totalDeaths-deathsHunter-deathsLynx)).length() < 6 ? claws/(totalMobs-totalDeaths-deathsHunter) : String.valueOf(claws/(totalMobs-totalDeaths-deathsHunter)).substring(0, 5)) + " Claws/Mob" : "no Claws dropped yet" : "no Mobs killed yet";
-        String enchClawsString = inquis != 0 ? enchClaws != 0 ? "Enchanted Ancient Claws: " + enchClaws + " -> " + (String.valueOf(enchClaws/(inquis-deathsInquis)).length() < 5 ? enchClaws/(inquis-deathsInquis) : String.valueOf(enchClaws/(inquis-deathsInquis)).substring(0, 4)) + " Enchanted Claws/Inquis" : "no Enchanted Claws dropped yet" : "no Inquis killed yet";
+        String enchClawsString = inquis != 0 ? enchClaws != 0 ? "Enchanted Ancient Claws: " + enchClaws + " -> " + (String.valueOf(enchClaws/(inquis-deathsInquis)).length() < 5 ? enchClaws/(inquis-deathsInquis) : String.valueOf(enchClaws/(inquis-deathsInquis)).substring(0, 4)) + " E. Claws/Inquis" : "no Enchanted Claws dropped yet" : "no Inquis killed yet";
         String goldString = totalMobs != 0 ? gold != 0 ? "Enchanted Gold: " + gold + " -> " + (String.valueOf(gold/(totalMobs+lynxes-totalDeaths-deathsHunter-deathsLynx)).length() < 5 ? gold/(totalMobs-totalDeaths-deathsHunter) : String.valueOf(gold/(totalMobs-totalDeaths-deathsHunter)).substring(0, 4)) + " Gold/Mob" : "no Enchanted Gold yet" : "no Mobs killed yet";
         String ironString = gaias != 0 ? iron != 0 ? "Enchanted Iron: " + iron + " -> " + (String.valueOf(iron/(gaias-deathsGaias)).length() < 5 ? iron/(gaias-deathsGaias) : String.valueOf(iron/(gaias-deathsGaias)).substring(0, 4)) + " Iron/Gaia" : "no Enchanted Iron yet" : "no Gaias killed yet";
 
@@ -151,7 +151,7 @@ public class MythoDropsGui extends DropStatsGui {
         drawString(fontRendererObj, inquisString, width/8*3, height/20*18,  0xFFFFFF);
         drawString(fontRendererObj, deathsInquisString, width/8*3+20, height/20*19,  0xFFFFFF);
 
-        drawString(fontRendererObj, coinsString, (int) (width/8*5.4), height/20*2,  0xFFFFFF);//TODO maybe move these values kinda around idk
+        drawString(fontRendererObj, coinsString, (int) (width/8*5.4), height/20*2,  0xFFFFFF);
         drawString(fontRendererObj, averageCoins, (int) (width/8*5.4+20), height/20*3,  0xFFFFFF);
         drawString(fontRendererObj, feathersString, (int) (width/8*5.4), height/20*4,  0xFFFFFF);
         drawString(fontRendererObj, cogString, (int) (width/8*5.4), height/20*5,  0xFFFFFF);
