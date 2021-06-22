@@ -13,7 +13,7 @@ public class CompareInventories {
         resetOldInventory(); //resets the old inv at the beginning of minecraft
     }
 
-    private List<ItemStack> getNewInventory(ItemStack[] inventory){
+    public List<ItemStack> getNewInventory(ItemStack[] inventory){
         List<ItemStack> nextInventory = new ArrayList<>(inventory.length); //the items of the player-inv get saved into nextinventory
         for(ItemStack stack: inventory){
             if(stack != null){

@@ -1,4 +1,4 @@
-package io.github.saft_bytecrafter.bytesskyblockutils.Guis;
+package io.github.saft_bytecrafter.bytesskyblockutils.guis;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
 
@@ -46,7 +46,6 @@ public class MythoDropsGui extends DropStatsGui {
     private int gold;
     private int iron;
 
-//TODO other stat for coins of mobs (scavenger or smth idk)
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);

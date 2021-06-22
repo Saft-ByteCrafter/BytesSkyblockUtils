@@ -1,8 +1,8 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
-import io.github.saft_bytecrafter.bytesskyblockutils.Guis.ConfigGUI;
-import io.github.saft_bytecrafter.bytesskyblockutils.Guis.DropStatsGui;
-import io.github.saft_bytecrafter.bytesskyblockutils.Guis.MythoDropsGui;
+import io.github.saft_bytecrafter.bytesskyblockutils.guis.ConfigGUI;
+import io.github.saft_bytecrafter.bytesskyblockutils.guis.DropStatsGui;
+import io.github.saft_bytecrafter.bytesskyblockutils.guis.MythoDropsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.DifferentItems;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -36,12 +36,13 @@ public class TimingHandler {
     private static int tickCounter;
     private static List<DifferentItems> differentItems;
 
-  @SubscribeEvent()
-    public void onWorldJoin(EntityJoinWorldEvent event){
-      if(event.entity != Minecraft.getMinecraft().thePlayer) return;
-        tickCounter = 1;
-        BSUMain.compareInventories.resetOldInventory();
-    }
+   @SubscribeEvent()
+   public void onWorldJoin(EntityJoinWorldEvent event){
+       if(event.entity != Minecraft.getMinecraft().thePlayer) return;
+       tickCounter = 1;
+       BSUMain.compareInventories.resetOldInventory();
+       BSUMain.compareInventories.getNewInventory(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+   }
 
     @SubscribeEvent()
     public void onTick(TickEvent.ClientTickEvent event){

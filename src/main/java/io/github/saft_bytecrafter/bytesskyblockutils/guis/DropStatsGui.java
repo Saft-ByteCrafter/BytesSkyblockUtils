@@ -1,7 +1,6 @@
-package io.github.saft_bytecrafter.bytesskyblockutils.Guis;
+package io.github.saft_bytecrafter.bytesskyblockutils.guis;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.TimingHandler;
-import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 

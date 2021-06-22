@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class BSUMain{
 
     public static final String MODID = "BytesSkyblockUtils";
-    public static final String VERSION = "0.2.3.1";
+    public static final String VERSION = "0.4";
     public static CompareInventories compareInventories;
 
     public BSUMain(){

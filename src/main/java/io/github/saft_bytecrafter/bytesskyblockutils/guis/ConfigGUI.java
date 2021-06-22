@@ -1,4 +1,4 @@
-package io.github.saft_bytecrafter.bytesskyblockutils.Guis;
+package io.github.saft_bytecrafter.bytesskyblockutils.guis;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.Utils;
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
@@ -6,14 +6,12 @@ import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.OnOffConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 public class ConfigGUI extends GuiScreen {
 
