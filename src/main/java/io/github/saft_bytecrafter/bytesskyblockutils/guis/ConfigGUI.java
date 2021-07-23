@@ -44,7 +44,7 @@ public class ConfigGUI extends GuiScreen {
 //        back = new GuiButton(0, width/2 - 100, (int) (height*0.8), (normalButtonWidth-40)/2, buttonHeight, "<- Back");
         gitHub = new GuiButton(0, 5, height - buttonHeight - 5, (normalButtonWidth - 40) / 2, buttonHeight, "GitHub");
 
-        mythologicalTracker = new GuiButton(0, width / 2 - normalButtonWidth / 2, height / 2 - buttonHeight / 2, normalButtonWidth, buttonHeight, "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker()));
+        mythologicalTracker = new GuiButton(0, width / 2 - normalButtonWidth / 2, height / 2 - buttonHeight / 2, normalButtonWidth, buttonHeight, "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker() == 1));
 
 //        this.buttonList.add(next);
 //        this.buttonList.add(back);
@@ -80,9 +80,9 @@ public class ConfigGUI extends GuiScreen {
                 e.printStackTrace();
             }
         } else if (button == mythologicalTracker) {
-            OnOffConfigs.setMythoTracker(!OnOffConfigs.getMythoTracker());
-            ConfigHandler.writeBoolConfig(file, "trackers", "Mythological-Tracker", OnOffConfigs.getMythoTracker());
-            mythologicalTracker.displayString = "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker());
+            OnOffConfigs.setMythoTracker(OnOffConfigs.getMythoTracker() == 0 ? 1 : 0);
+            ConfigHandler.writeIntConfig(file, "trackers", "Mythological-Tracker", OnOffConfigs.getMythoTracker());
+            mythologicalTracker.displayString = "Toggle the Mythological-Tracker: " + Utils.getColoredBool(OnOffConfigs.getMythoTracker() == 1);
         }
     }
 }

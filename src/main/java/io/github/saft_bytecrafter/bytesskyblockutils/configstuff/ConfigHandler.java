@@ -118,7 +118,7 @@ public class ConfigHandler {
         //config:
 
         //trackerconfig:
-        OnOffConfigs.setMythoTracker(initBool(modConfigFile, "trackers", "Mythological-Tracker", true));
+        OnOffConfigs.setMythoTracker(initInt(modConfigFile, "trackers", "Mythological-Tracker", 1));
 
         //trackers:
         //mytho:

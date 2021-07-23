@@ -32,7 +32,7 @@ public class CompareInventories {
         HashMap<String, Integer> currentInventoryMap = new HashMap<>();
         if(oldInventory != null){
             differentItems.clear();
-            for(int i = 0; i < currentInventory.size()-1; i++){ //goes through the list of items in the inv
+            for(int i = 0; i < currentInventory.size(); i++){ //goes through the list of items in the inv
                 if(i == 8) continue;
                 ItemStack oldStack = oldInventory.get(i);
                 ItemStack currentStack = currentInventory.get(i);

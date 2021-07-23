@@ -1,7 +1,6 @@
 package io.github.saft_bytecrafter.bytesskyblockutils.itemtracking;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
-import io.github.saft_bytecrafter.bytesskyblockutils.BSUMain;
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.OnOffConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.StringUtils;
@@ -46,33 +45,38 @@ public class Trackers {
     private List<DifferentItems> differentItems;
     private static final String file =  ConfigHandler.getLootTrackingFile();
 
+    private static CompareInventories compInvInstance;
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChat(ClientChatReceivedEvent event){
 
         String chatMessage = StringUtils.stripControlCodes(event.message.getUnformattedText());
         if(chatMessage.contains(":")) return;
-        if(OnOffConfigs.getMythoTracker()){
+        if(OnOffConfigs.getMythoTracker() == 1){
             if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
                 startBurrows++;
-                BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory); //wird am anfang (jeder chain :/) gemacht, damit das default inv geladen wird
                 ConfigHandler.writeIntConfig(file, mytho, "Start Burrows", startBurrows);
             } else if(chatMessage.startsWith("You dug out a Griffin Burrow! (2/4)") || chatMessage.startsWith("You dug out a Griffin Burrow! (3/4)")){
                 midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
-                BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
-                differentItems = BSUMain.compareInventories.getDifferentItems();
+                if (Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.mainInventory != null) compInvInstance.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+                differentItems = compInvInstance.getDifferentItems();
                 for(DifferentItems item: differentItems){
                     if(item.getItemName().contains("Enchanted Gold") && item.getItemAmount() > 0){
                         gold += item.getItemAmount();
+                        ConfigHandler.writeIntConfig(file, mytho, "Enchanted Gold", gold);
                     }
                     else if(item.getItemName().contains("Enchanted Iron") && item.getItemAmount() > 0){
                         iron += item.getItemAmount();
+                        ConfigHandler.writeIntConfig(file, mytho, "Enchanted Iron", iron);
                     }
                     else if(item.getItemName().contains("Enchanted Ancient Claw") && item.getItemAmount() > 0){
                         enchClaws += item.getItemAmount();
+                        ConfigHandler.writeIntConfig(file, mytho, "Enchanted Ancient Claw", enchClaws);
                     }
                     else if(item.getItemName().contains("Ancient Claw") && item.getItemAmount() > 0){
                         claws += item.getItemAmount();
+                        ConfigHandler.writeIntConfig(file, mytho, "Ancient Claw", claws);
                     }
                     else if(item.getItemName().contains("Antique Remedies")){
                         remedis++;
@@ -99,73 +103,83 @@ public class Trackers {
                         ConfigHandler.writeIntConfig(file, mytho, "Chimeras", chimeras);
                     }
                 } //^the picked up items are added to the variables
-                ConfigHandler.writeIntConfig(file, mytho, "Enchanted Gold", gold);
-                ConfigHandler.writeIntConfig(file, mytho, "Enchanted Iron", iron);
-                ConfigHandler.writeIntConfig(file, mytho, "Enchanted Ancient Claw", enchClaws);
-                ConfigHandler.writeIntConfig(file, mytho, "Ancient Claw", claws); //the variables are passed to the cfg
-            } else if(chatMessage.startsWith("You finished the Griffin Burrow chain! (4/4)")){
+            } else if(chatMessage.contains(/*"You finished the Griffin burrow chain! */"(4/4)")){// I have no hecking clue why the message before the 4/4 is not recognized, i literally copy-pasted it (maybe some spaces idfk)
                 endBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "End Burrows" , endBurrows);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Hunter")){
-                hunters++;
-                ConfigHandler.writeIntConfig(file, mytho, "Minos Hunters", hunters);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Siamese Lynxes")){
-                lynxes++;
-                ConfigHandler.writeIntConfig(file, mytho, "Siamese Lynxes", lynxes);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minotaur")){
-                minotaurs++;
-                ConfigHandler.writeIntConfig(file, mytho, "Minotaurs", minotaurs);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Gaia Construct")){
-                gaias++;
-                ConfigHandler.writeIntConfig(file, mytho, "Gaia Constructs", gaias);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Champion")){
-                champs++;
-                ConfigHandler.writeIntConfig(file, mytho, "Minos Champions", champs);
-            } else if(chatMessage.contains("You dug out") && chatMessage.contains("Minos Inquisitor")){
-                inquis++; //doesn't happen rn cause hypixel bad and they send the same msg for inquis as for champs, thats why the code under this exists
-                ConfigHandler.writeIntConfig(file, mytho, "Minos Inquisitors", inquis);
-            } else if(chatMessage.contains("Actually, you dug up a ")){//TODO this kinda does not work
-                inquis++;
-                ConfigHandler.writeIntConfig(file, mytho, "Minos Inquisitors", inquis);
-                champs--;
-                ConfigHandler.writeIntConfig(file, mytho, "Minos Champions", champs);
-            } else if(chatMessage.contains("You dug out ") && chatMessage.contains("coins!")){
-                String[] cutChatMessage = chatMessage.split(" ");
-                int amount = Integer.valueOf(cutChatMessage[4].replace(",", ""));
-                coins += amount;
-                ConfigHandler.writeIntConfig(file, mytho, "Coins", coins);
-            } else if(chatMessage.contains("Griffin Feather")){
-                feathers++;
-                ConfigHandler.writeIntConfig(file, mytho, "Griffin Feathers", feathers);
-            } else if(chatMessage.contains("Crown of Greed")){
-                cogs++;
-                ConfigHandler.writeIntConfig(file, mytho, "Crowns of Greed", cogs);
-            } else if(chatMessage.contains("Washed up")){
-                washedUps++;
-                ConfigHandler.writeIntConfig(file, mytho, "Washed up Souvenirs", washedUps);
-            } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Hunter")){
+            } else if(chatMessage.contains("You dug out")) {
+                if (chatMessage.contains("Minos Hunter")) {
+                    hunters++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Minos Hunters", hunters);
+                } else if (chatMessage.contains("Siamese Lynxes")) {
+                    lynxes++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Siamese Lynxes", lynxes);
+                } else if (chatMessage.contains("Minotaur")) {
+                    minotaurs++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Minotaurs", minotaurs);
+                } else if (chatMessage.contains("Gaia Construct")) {
+                    gaias++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Gaia Constructs", gaias);
+                } else if (chatMessage.contains("Minos Champion")) {
+                    champs++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Minos Champions", champs);
+                } else if (chatMessage.contains("Minos Inquisitor")) {
+                    inquis++; //doesn't happen rn cause hypixel bad and they send the same msg for inquis as for champs, thats why the code under this exists
+                    ConfigHandler.writeIntConfig(file, mytho, "Minos Inquisitors", inquis);
+                } else if(chatMessage.contains("Griffin Feather")){
+                    feathers++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Griffin Feathers", feathers);
+                } else if(chatMessage.contains("Crown of Greed")){
+                    cogs++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Crowns of Greed", cogs);
+                } else if(chatMessage.contains("Washed up")){
+                    washedUps++;
+                    ConfigHandler.writeIntConfig(file, mytho, "Washed up Souvenirs", washedUps);
+                }else if(chatMessage.contains("You dug out ") && chatMessage.contains("coins!")){
+                    String[] cutChatMessage = chatMessage.split(" ");
+                    int amount = Integer.valueOf(cutChatMessage[4].replace(",", ""));
+                    coins += amount;
+                    ConfigHandler.writeIntConfig(file, mytho, "Coins", coins);
+                }
+            }
+              else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Hunter")){
                 deathsHunters++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Minos Hunters", deathsHunters);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Siamese")){
                 deathsLynxes++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Siames Lynxes", deathsLynxes);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minotaur")){
                 deathsMinotaurs++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Minotaurs", deathsMinotaurs);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Gaia Construct")){
                 deathsGaias++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Gaia Constructs", deathsGaias);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Champion")){
                 deathsChamps++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Minos Champions", deathsChamps);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             } else if(chatMessage.contains("You were killed by") && chatMessage.contains("Minos Inquisitor")){
                 deathsInquis++;
+                midBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Minos Inquisitors", deathsInquis);
+                ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             }
         }
     }
 
-
+    public static void makeNewCompareInvInstance(){
+        compInvInstance = null;
+        compInvInstance = new CompareInventories();
+        if(Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.mainInventory != null) compInvInstance.getNewInventory(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+    }
 
     public static void setStartBurrows(int startBurrows) {
         Trackers.startBurrows = startBurrows;

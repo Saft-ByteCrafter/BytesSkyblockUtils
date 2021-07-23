@@ -4,6 +4,7 @@ import io.github.saft_bytecrafter.bytesskyblockutils.guis.ConfigGUI;
 import io.github.saft_bytecrafter.bytesskyblockutils.guis.DropStatsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.guis.MythoDropsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.DifferentItems;
+import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,7 +42,8 @@ public class TimingHandler {
        if(event.entity != Minecraft.getMinecraft().thePlayer) return;
        tickCounter = 1;
        BSUMain.compareInventories.resetOldInventory();
-       BSUMain.compareInventories.getNewInventory(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+       BSUMain.compareInventories.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+       Trackers.makeNewCompareInvInstance();
    }
 
     @SubscribeEvent()
@@ -55,14 +57,15 @@ public class TimingHandler {
                 }
             }
             differentItems = BSUMain.compareInventories.getDifferentItems();
-            for(DifferentItems item: differentItems){
-                System.out.println(item.getItemName() + " + " + item.getItemAmount());
-            }
         }
     }
 
     public static void setGuiToOpen(String guiToOpen) { //setter für die zu öffnende gui
         TimingHandler.guiToOpen = guiToOpen;
     }
+
+    public static List<DifferentItems> getDifferentItems(){
+       return differentItems;
+    } //unused for now
 
 }
