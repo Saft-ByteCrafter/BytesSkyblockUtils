@@ -42,17 +42,12 @@ public class Trackers {
     private static int enchClaws;
     private static int claws;
     private static final String mytho = "mythological trackers";
-    private List<DifferentItems> differentItems;
+    private static List<DifferentItems> differentItems;
     private static final String file =  ConfigHandler.getLootTrackingFile();
 
-    private static CompareInventories compInvInstance;
+    public static CompareInventories compInvInstance;
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onChat(ClientChatReceivedEvent event){
-
-        String chatMessage = StringUtils.stripControlCodes(event.message.getUnformattedText());
-        if(chatMessage.contains(":")) return;
-        if(OnOffConfigs.getMythoTracker() == 1){
+    public static void seeIfDugBurrow(String chatMessage){
             if(chatMessage.startsWith("You dug out a Griffin Burrow! (1/4)")){
                 startBurrows++;
                 ConfigHandler.writeIntConfig(file, mytho, "Start Burrows", startBurrows);
@@ -172,7 +167,6 @@ public class Trackers {
                 ConfigHandler.writeIntConfig(file, mytho, "Deaths Minos Inquisitors", deathsInquis);
                 ConfigHandler.writeIntConfig(file, mytho, "Mid Burrows", midBurrows);
             }
-        }
     }
 
     public static void makeNewCompareInvInstance(){

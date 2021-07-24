@@ -37,7 +37,7 @@ public class ConfigGUI extends GuiScreen {
         ScaledResolution scaledRes = new ScaledResolution(Minecraft.getMinecraft());
         int height = scaledRes.getScaledHeight();
         int width = scaledRes.getScaledWidth();
-        int normalButtonWidth = 200;
+        int normalButtonWidth = 210;
         int buttonHeight = 20;
 
 //        next = new GuiButton(0, width/2 + 20, (int) (height * 0.8), (normalButtonWidth-40)/2, buttonHeight, "Next ->");

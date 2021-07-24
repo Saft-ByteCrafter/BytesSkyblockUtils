@@ -2,6 +2,7 @@ package io.github.saft_bytecrafter.bytesskyblockutils;
 
 import io.github.saft_bytecrafter.bytesskyblockutils.guis.ConfigGUI;
 import io.github.saft_bytecrafter.bytesskyblockutils.guis.DropStatsGui;
+import io.github.saft_bytecrafter.bytesskyblockutils.guis.MinionEfficiencyGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.guis.MythoDropsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.DifferentItems;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
@@ -21,8 +22,22 @@ public class TimingHandler {
 
         if(guiToOpen != null){
             Minecraft mc = Minecraft.getMinecraft();
-            if(guiToOpen.startsWith("configgui")){
-                mc.displayGuiScreen(new ConfigGUI());
+            switch (guiToOpen){
+                case "configgui":
+                    mc.displayGuiScreen(new ConfigGUI());
+                    break;
+                case "dropstats":
+                    mc.displayGuiScreen(new DropStatsGui());
+                    break;
+                case "mythodrops":
+                    mc.displayGuiScreen(new MythoDropsGui());
+                    break;
+                case "minionefficiency":
+                    mc.displayGuiScreen(new MinionEfficiencyGui());
+                    break;
+            }
+     /*       if(guiToOpen.startsWith("configgui")){
+                mc.displayGuiScreen(new ConfigGui());
             }
             else if(guiToOpen.startsWith("dropstats")){
                 mc.displayGuiScreen(new DropStatsGui());
@@ -30,6 +45,7 @@ public class TimingHandler {
             else if(guiToOpen.startsWith("mythodrops")){
                 mc.displayGuiScreen(new MythoDropsGui());
             }
+*/
         }
         guiToOpen = null;
     }

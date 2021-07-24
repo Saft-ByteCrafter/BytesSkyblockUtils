@@ -1,6 +1,7 @@
 package io.github.saft_bytecrafter.bytesskyblockutils.configstuff;
 
 
+import io.github.saft_bytecrafter.bytesskyblockutils.guis.MinionEfficiencyGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraftforge.common.config.Configuration;
 
@@ -11,6 +12,8 @@ public class ConfigHandler {
     private static Configuration config;
     private static final String lootTrackingFile = "config/BytesSkyblockUtils/trackers.cfg";
     private static final String modConfigFile = "config/BytesSkyblockUtils/modconfig.cfg";
+    private static final String minionConfig = "config/BytesSkyblockUtils/minionconfig.cfg";
+    private static final String minionTimes = "config/BytesSkyblockUtils/miniontimes.cfg";
     private static final String mytho = "mythological trackers";
 
     /*   public static void init(){
@@ -114,11 +117,54 @@ public class ConfigHandler {
         }
     }
 
+    public static double getDouble(String file, String category, String key) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            if (config.getCategory(category).containsKey(key)) {
+                return config.get(category, key, 0).getDouble();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            config.save();
+        }
+        return 0;
+    }
+
+    public static void writeDoubleConfig(String file, String category, String key, double value) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            double set = config.get(category, key, value).getDouble();
+            config.getCategory(category).get(key).set(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            config.save();
+        }
+    }
+
+    public static double initDouble(String file, String category, String key, double defaultValue) {
+        if (!hasKey(file, category, key)) {
+            writeDoubleConfig(file, category, key, defaultValue);
+            return defaultValue;
+        } else {
+            return getDouble(file, category, key);
+        }
+    }
+
     public static void reloadConfig(){
         //config:
 
         //trackerconfig:
         OnOffConfigs.setMythoTracker(initInt(modConfigFile, "trackers", "Mythological-Tracker", 1));
+
+        //minionefficiency config stuff
+        MinionEfficiencyGui.setBoolBazaarNpc(initBool(minionConfig, " ", "Bazaar or NPC", false));//bazaar -> false
+        MinionEfficiencyGui.setIntFuel(initInt(minionConfig, " ", "Fuel", 0));
+        MinionEfficiencyGui.setIntUpgrade1(initInt(minionConfig, " ", "Upgrade 1", 0));
+        MinionEfficiencyGui.setIntUpgrade2(initInt(minionConfig, " ", "Upgrade 2", 0));
 
         //trackers:
         //mytho:
@@ -164,6 +210,10 @@ public class ConfigHandler {
 
     public static String getModConfigFile(){
         return modConfigFile;
+    }
+
+    public static String getMinionConfig(){
+        return minionConfig;
     }
 
 }
