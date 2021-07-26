@@ -131,7 +131,7 @@ public class Trackers {
                 } else if(chatMessage.contains("Crown of Greed")){
                     cogs++;
                     ConfigHandler.writeIntConfig(file, mytho, "Crowns of Greed", cogs);
-                } else if(chatMessage.contains("Washed up")){
+                } else if(chatMessage.contains("Washed-up")){
                     washedUps++;
                     ConfigHandler.writeIntConfig(file, mytho, "Washed up Souvenirs", washedUps);
                 }else if(chatMessage.contains("You dug out ") && chatMessage.contains("coins!")){
