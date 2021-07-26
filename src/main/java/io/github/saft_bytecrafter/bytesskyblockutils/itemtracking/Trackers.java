@@ -178,7 +178,7 @@ public class Trackers {
     public static void makeNewCompareInvInstance(){
         compInvInstance = null;
         compInvInstance = new CompareInventories();
-        if(Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.mainInventory != null) compInvInstance.getNewInventory(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
+        if(Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.mainInventory != null) compInvInstance.getNewItems(Minecraft.getMinecraft().thePlayer.inventory.mainInventory);
     }
 
     public static void setStartBurrows(int startBurrows) {
