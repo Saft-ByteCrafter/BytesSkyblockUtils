@@ -1,12 +1,14 @@
 package io.github.saft_bytecrafter.bytesskyblockutils;
 
+import io.github.saft_bytecrafter.bytesskyblockutils.api.BazaarGetter;
+import io.github.saft_bytecrafter.bytesskyblockutils.api.PlayerStatsGetter;
 import io.github.saft_bytecrafter.bytesskyblockutils.commands.ConfigGuiCommand;
 import io.github.saft_bytecrafter.bytesskyblockutils.commands.DropStatsCommand;
 import io.github.saft_bytecrafter.bytesskyblockutils.commands.MinionEfficiencyCommand;
 import io.github.saft_bytecrafter.bytesskyblockutils.configstuff.ConfigHandler;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.CompareInventories;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
-import io.github.saft_bytecrafter.bytesskyblockutils.minioncalcstuff.MinionTimingMaps;
+import io.github.saft_bytecrafter.bytesskyblockutils.minioncalcstuff.MinionMaps;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,13 +21,15 @@ public class BSUMain{
     public static final String MODID = "BytesSkyblockUtils";
     public static final String VERSION = "0.5";
     public static CompareInventories compareInventories;
-    public static MinionTimingMaps minionTimingMaps;
+    public static MinionMaps minionMaps;
     public static PlayerStatsGetter playerStatsGetter;
+    public static BazaarGetter bazaarGetter;
 
     public BSUMain(){
         compareInventories = new CompareInventories();
-        minionTimingMaps = new MinionTimingMaps();
+        minionMaps = new MinionMaps();
         playerStatsGetter = new PlayerStatsGetter();
+        bazaarGetter = new BazaarGetter();
     }
 
 

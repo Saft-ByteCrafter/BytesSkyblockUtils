@@ -43,43 +43,6 @@ public class ConfigHandler {
         return false;
     }
 
-    public static boolean getBoolean(String file, String category, String key) {
-        config = new Configuration(new File(file));
-        try {
-            config.load();
-            if (config.getCategory(category).containsKey(key)) {
-                return config.get(category, key, 0).getBoolean();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            config.save();
-        }
-        return true;
-    }
-
-    public static void writeBoolConfig(String file, String category, String key, boolean value) {
-        config = new Configuration(new File(file));
-        try {
-            config.load();
-            boolean set = config.get(category, key, value).getBoolean();
-            config.getCategory(category).get(key).set(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            config.save();
-        }
-    }
-
-    public static boolean initBool(String file, String category, String key, boolean defaultValue) {
-        if (!hasKey(file, category, key)) {
-            writeBoolConfig(file, category, key, defaultValue);
-            return defaultValue;
-        } else {
-            return getBoolean(file, category, key);
-        }
-    }
-
     public static int getInt(String file, String category, String key) {
         config = new Configuration(new File(file));
         try {
@@ -117,19 +80,56 @@ public class ConfigHandler {
         }
     }
 
-    public static double getDouble(String file, String category, String key) {
+    public static String getString(String file, String category, String key) {
         config = new Configuration(new File(file));
         try {
             config.load();
             if (config.getCategory(category).containsKey(key)) {
-                return config.get(category, key, 0).getDouble();
+                return config.get(category, key, "").getString();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             config.save();
         }
-        return 0;
+        return "";
+    }
+
+    public static void writeStringConfig(String file, String category, String key, String value) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            String set = config.get(category, key, value).getString();
+            config.getCategory(category).get(key).set(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            config.save();
+        }
+    }
+
+    public static String initString(String file, String category, String key, String defaultValue) {
+        if (!hasKey(file, category, key)) {
+            writeStringConfig(file, category, key, defaultValue);
+            return defaultValue;
+        } else {
+            return getString(file, category, key);
+        }
+    }
+
+    public static double getDouble(String file, String category, String key) {
+        config = new Configuration(new File(file));
+        try {
+            config.load();
+            if (config.getCategory(category).containsKey(key)) {
+                return config.get(category, key, 0D).getDouble();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            config.save();
+        }
+        return 0D;
     }
 
     public static void writeDoubleConfig(String file, String category, String key, double value) {
@@ -160,8 +160,10 @@ public class ConfigHandler {
         //trackerconfig:
         OnOffConfigs.setMythoTracker(initInt(modConfigFile, "trackers", "Mythological-Tracker", 1));
 
+        initString(modConfigFile, "general", "API-Key", "");
+
         //minionefficiency config stuff
-        MinionEfficiencyGui.setBoolBazaarNpc(initBool(minionConfig, " ", "Bazaar or NPC", false));//bazaar -> false
+        MinionEfficiencyGui.setIntBazaarNpc(initInt(minionConfig, " ", "Bazaar or NPC", 0));//bazaar -> 0
         MinionEfficiencyGui.setIntFuel(initInt(minionConfig, " ", "Fuel", 0));
         MinionEfficiencyGui.setIntUpgrade1(initInt(minionConfig, " ", "Upgrade 1", 0));
         MinionEfficiencyGui.setIntUpgrade2(initInt(minionConfig, " ", "Upgrade 2", 0));

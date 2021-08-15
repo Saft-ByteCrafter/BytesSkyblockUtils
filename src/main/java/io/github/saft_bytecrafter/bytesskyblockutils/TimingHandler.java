@@ -7,15 +7,18 @@ import io.github.saft_bytecrafter.bytesskyblockutils.guis.MythoDropsGui;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.DifferentItems;
 import io.github.saft_bytecrafter.bytesskyblockutils.itemtracking.Trackers;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import scala.collection.parallel.ParIterableLike;
 
 import java.util.List;
 
 public class TimingHandler {
 
     private static String guiToOpen;
+    public static boolean canGetNewApi;
 
     @SubscribeEvent
     public void onRenderTick(TickEvent.RenderTickEvent event){
@@ -36,16 +39,6 @@ public class TimingHandler {
                     mc.displayGuiScreen(new MinionEfficiencyGui());
                     break;
             }
-     /*       if(guiToOpen.startsWith("configgui")){
-                mc.displayGuiScreen(new ConfigGui());
-            }
-            else if(guiToOpen.startsWith("dropstats")){
-                mc.displayGuiScreen(new DropStatsGui());
-            }
-            else if(guiToOpen.startsWith("mythodrops")){
-                mc.displayGuiScreen(new MythoDropsGui());
-            }
-*/
         }
         guiToOpen = null;
     }
@@ -73,6 +66,10 @@ public class TimingHandler {
                 }
             }
             differentItems = BSUMain.compareInventories.getDifferentItems();
+        }
+
+        if(tickCounter % 1200 == 0){ //-> every 60 seconds
+            canGetNewApi = true;
         }
     }
 
